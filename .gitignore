@@ -92,3 +92,9 @@ ENV/
 bot/config.py
 webinterface/config.py
 .idea/
+bot/dbsettings.py
+webinterface/dbsettings.py
+bot/__pycache__/
+webinterface/__pycache__/
+bot/.idea/
+webinterface/.idea/
