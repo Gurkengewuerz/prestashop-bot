@@ -97,8 +97,9 @@ class Shop():
 
     def getorders(self):
         for state in self.list_paystat:
-            for order in self.getxml("orders?display=full&filter[current_state]=%s" % state).find("orders").findall(
-                    "order"):
+            xmlData = self.getxml("orders?display=full&filter[current_state]=%s" % state).find("orders")
+            if len(xmlData) <= 0: return
+            for order in xmlData.findall("order"):
                 id = order.find("id")
                 id_customer = order.find("id_customer")
                 order_reference = order.find("reference")
