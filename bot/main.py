@@ -1,6 +1,7 @@
 from prestaobjects import *
 from config import *
 from db import *
+import time
 
 db = DB()
 
@@ -21,7 +22,13 @@ if __name__ == "__main__":
                 licenceQuery = db.query("SELECT * FROM ita_licencekey WHERE product_reference = '%s' AND rented_timestamp IS NULL"%item.reference)
                 licenceFetch = licenceQuery.fetchall()
                 if len(licenceFetch) >= item.quantity:
-                    pass # TODO: GET KEYS AND SEND THEM TO ORDER -> UPDATE
+                    # TODO: GET KEYS AND SEND THEM TO ORDER -> UPDATE
+                    licenceList = list()
+                    for i in range(item.quantity):
+                        key = licenceFetch[i][1]
+                        licenceList.append(key)
+                        db.query("UPDATE ita_licencekey SET rented_timestamp = '%s' WHERE licence = '%s'"%(int(time.time()), key))
+                    order.sendMSG("%s:\r\n%s"%(item.reference)) # TODO: TEST!!!!!!!!!!!!!!!!!!!
                 else:
                     print("No Product Keys available")
         break
