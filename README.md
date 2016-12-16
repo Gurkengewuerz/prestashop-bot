@@ -49,8 +49,14 @@ webbinterface/dbsettings.sample.py -> webinterface/dbsettings.py
         PRIMARY KEY (`stat_id`),
         INDEX `shop_id` (`shop_id`),
         CONSTRAINT `shop_id` FOREIGN KEY (`shop_id`) REFERENCES `ita_shop` (`shop_id`) ON UPDATE CASCADE ON DELETE CASCADE
-    ) COLLATE='latin1_swedish_ci' ENGINE=InnoDB;
-
+    ) COLLATE='latin1_swedish_ci' ENGINE=InnoDB;  
+      
+    CREATE TABLE `ita_user` (
+        `user_id` INT(11) NOT NULL DEFAULT '0',
+        `username` VARCHAR(60) NULL DEFAULT NULL,
+        `password` VARCHAR(255) NULL DEFAULT NULL,
+        PRIMARY KEY (`user_id`)
+    ) COLLATE='latin1_swedish_ci'ENGINE=InnoDB;
 
 
 #### Libraries
