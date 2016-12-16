@@ -8,11 +8,20 @@ In the course of a small project at school, we are programming a bot in python w
 
 #### TODO:
 - [x] Idea for the idea
-- [ ] Python Bot
-- [ ] DataBase designe
+- [x] Python Bot
+- [x] DataBase designe
 - [ ] Python Frontend (Django?, Bottle?)
-- [ ] alternative stuff?
+- [x] alternative stuff? (Telegram...)
 
+
+### SetUp:
+bot/dbsettings.sample.py -> bot/dbsettings.py  
+bot/config.py
+
+        telegram_api = "" # BOT TOKEN
+        telegram_chat = "" # CHATID /getUpdates
+
+webbinterface/dbsettings.sample.py -> webinterface/dbsettings.py
 
 #### MySQL Statement:
     CREATE TABLE `ita_licencekey` (
@@ -46,6 +55,7 @@ In the course of a small project at school, we are programming a bot in python w
 
 #### Libraries
 - https://github.com/PrestaShop/PrestaShop
+- https://core.telegram.org/methods
 
 Twitter: @Gurkengewuerz  
 Twitter: @Paraodx_1337
