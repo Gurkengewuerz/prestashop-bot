@@ -48,7 +48,7 @@ class Order():
         return _message_id, self.thread
 
     def setStatus(self, id):
-        xmlOrder = self.shop.getAsXML("orders/%s" % self.order_id)
+        xmlOrder = self.shop.getxml("orders/%s" % self.order_id)
         xmlOrder.find("order").find("current_state").text = str(id)
         self.shop.update("orders", xmlOrder)
 
