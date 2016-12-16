@@ -3,7 +3,7 @@ from tkinter import messagebox
 from db import *
 import time
 import hashlib
-from main import *
+import webbrowser
 
 
 db = DB()
@@ -30,8 +30,10 @@ class Application:
 
         self.loginbtn = Button(self.loginframe, command=self.checkContent, height = 1, width = 10,)        #Login Button
         self.loginbtn.place(x=130, y=280)
-        #self.loginbtn.place(x=130,y=280)
 
+        self.visitLbl = Label(self.loginframe, text="PrestaShop-Bot", fg="blue")
+        self.visitLbl.place(x=120, y=345)
+        #self.visitLbl.bind("<Button-1>", callback)
         self.loginframe.mainloop()
 
     def checkContent(self):
@@ -44,6 +46,8 @@ class Application:
         else:
             messagebox.showinfo("Error", "Invalid username or password!", icon="error")
 
+    #def callback(event):
+        #webbrowser.open_new(r"http://www.google.com")
 
 Application()
 
