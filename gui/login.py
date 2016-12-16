@@ -41,7 +41,6 @@ class Application:
             messagebox.showinfo("Information", "Login successful!", icon="info")
             time.sleep(1)
             quit(self)      #the mainframe is still running...
-            create
         else:
             messagebox.showinfo("Error", "Invalid username or password!", icon="error")
 
