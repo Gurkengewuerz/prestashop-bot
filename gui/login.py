@@ -31,8 +31,8 @@ class Application:
         #self.loginbtn = Button(self.loginframe, command=self.checkContent, height = 1, width = 10,)        #Login Button
         #self.loginbtn.place(x=130, y=280)
 
-        self.visitLbl = Label(self.loginframe, text="PrestaShop-Bot", fg="blue")
-        self.visitLbl.place(x=140, y=430)
+        #self.visitLbl = Label(self.loginframe, text="PrestaShop-Bot", fg="blue", bg= null)
+        #self.visitLbl.place(x=140, y=430)
         #self.visitLbl.bind("<Button-1>", callback)
         self.loginframe.mainloop()
 
@@ -50,4 +50,3 @@ class Application:
         #webbrowser.open_new(r"http://www.google.com")
 
 Application()
-
