@@ -42,7 +42,6 @@ class Application:
         hashObj = hashlib.sha256(self.passVar.get().encode())
         userQuery = db.query("SELECT * FROM ita_user WHERE username = '%s' AND password = '%s'" % (self.userVar.get(), hashObj.hexdigest()))
         if len(userQuery.fetchall()):
-            messagebox.showinfo("Information", "Login successful!", icon="info")
             time.sleep(1)
             quit(self)      #the mainframe is still running...
         else:
