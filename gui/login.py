@@ -21,15 +21,17 @@ class Application:
         self.bg1 = Label(self.loginframe, image=self.bgImg).pack()
 
         self.passVar = StringVar()
-        #self.passwordtb = Entry(self.loginframe, show="*", textvariable=self.passVar)
-        #self.passwordtb.place(x=100, y=230)
+        self.passwordtb = Entry(self.loginframe, show="*", textvariable=self.passVar)
+        self.passwordtb.place(x=100, y=285)
 
+        self.ubImg = PhotoImage(file="./img/field.png")
         self.userVar = StringVar()
-        #self.usernametb = Entry(self.loginframe, textvariable=self.userVar)
-        #self.usernametb.place(x=100,y=160)
+        self.usernametb = Entry(self.loginframe, textvariable=self.userVar)
+        self.usernametb.place(x=100,y=238)
 
-        #self.loginbtn = Button(self.loginframe, command=self.checkContent, height = 1, width = 10,)        #Login Button
-        #self.loginbtn.place(x=130, y=280)
+        self.btnImg = PhotoImage(file="./img/button.png")
+        self.loginbtn = Button(self.loginframe, command=self.checkContent, height=33, width=149, image=self.btnImg)        #Login Button
+        self.loginbtn.place(x=99, y=330)
 
         #self.visitLbl = Label(self.loginframe, text="PrestaShop-Bot", fg="blue", bg= null)
         #self.visitLbl.place(x=140, y=430)
