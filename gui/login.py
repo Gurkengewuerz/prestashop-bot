@@ -12,27 +12,27 @@ db = DB()
 class Application:
     def __init__(self):
         self.loginframe = Tk()
-        self.loginframe.iconbitmap(default="./img./user.ico")
+        self.loginframe.iconbitmap(default="./img./ico.ico")
         self.loginframe.title("Administration Control Panel")
         self.loginframe.resizable(width=FALSE, height=FALSE)
-        self.loginframe.geometry("340x380")
+        self.loginframe.geometry("340x460")
 
         self.bgImg = PhotoImage(file="./img/bg_overlay.png")
         self.bg1 = Label(self.loginframe, image=self.bgImg).pack()
 
         self.passVar = StringVar()
-        self.passwordtb = Entry(self.loginframe, show="*", textvariable=self.passVar)
-        self.passwordtb.place(x=100, y=230)
+        #self.passwordtb = Entry(self.loginframe, show="*", textvariable=self.passVar)
+        #self.passwordtb.place(x=100, y=230)
 
         self.userVar = StringVar()
-        self.usernametb = Entry(self.loginframe, textvariable=self.userVar)
-        self.usernametb.place(x=100,y=160)
+        #self.usernametb = Entry(self.loginframe, textvariable=self.userVar)
+        #self.usernametb.place(x=100,y=160)
 
-        self.loginbtn = Button(self.loginframe, command=self.checkContent, height = 1, width = 10,)        #Login Button
-        self.loginbtn.place(x=130, y=280)
+        #self.loginbtn = Button(self.loginframe, command=self.checkContent, height = 1, width = 10,)        #Login Button
+        #self.loginbtn.place(x=130, y=280)
 
         self.visitLbl = Label(self.loginframe, text="PrestaShop-Bot", fg="blue")
-        self.visitLbl.place(x=120, y=345)
+        self.visitLbl.place(x=140, y=430)
         #self.visitLbl.bind("<Button-1>", callback)
         self.loginframe.mainloop()
 
