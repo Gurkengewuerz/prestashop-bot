@@ -91,10 +91,14 @@ ENV/
 # ITA15b
 bot/config.py
 webinterface/config.py
+gui/config.py
 .idea/
 bot/dbsettings.py
 webinterface/dbsettings.py
+gui/dbsettings.py
 bot/__pycache__/
 webinterface/__pycache__/
+gui/__pycache__/
 bot/.idea/
 webinterface/.idea/
+gui/.idea/
