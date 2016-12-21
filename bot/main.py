@@ -2,6 +2,7 @@ from prestaobjects import *
 from config import *
 from db import *
 from telegram import *
+from twitterbot import *
 import time
 
 
@@ -41,6 +42,10 @@ if __name__ == "__main__":
                 if telegram_api is not None and telegram_api != "":
                     bot = TelegramBot(telegram_api)
                     bot.sendMSG(telegram_chat, "%s Delivered" % order.reference)
+                if access_token is not None and access_token != "":
+                    twitter = TwitterAPI()
+                    twitter.tweet("%s Delivered" % order.reference)
+
             else:
                 print("%s has no Items that has been changed" % order.reference)
         break
