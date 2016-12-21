@@ -20,6 +20,10 @@ bot/config.py
 
         telegram_api = "" # BOT TOKEN
         telegram_chat = "" # CHATID /getUpdates
+        consumer_key = ""
+        consumer_secret = ""
+        access_token =  ""
+        access_token_secret =  ""
 
 webbinterface/dbsettings.sample.py -> webinterface/dbsettings.py
 
