@@ -4,12 +4,13 @@ from db import *
 import time
 import hashlib
 import webbrowser
+from main import *
 
 
 db = DB()
 
 
-class Application:
+class Application():
     def __init__(self):
         self.loginframe = Tk()
         self.loginframe.iconbitmap(default="./img./ico.ico")
@@ -17,37 +18,45 @@ class Application:
         self.loginframe.resizable(width=FALSE, height=FALSE)
         self.loginframe.geometry("340x460")
 
-        self.bgImg = PhotoImage(file="./img/bg_overlay.png")
+        self.bgImg = PhotoImage(file="./img/bg_overlay_status.png")
         self.bg1 = Label(self.loginframe, image=self.bgImg).pack()
 
         self.passVar = StringVar()
-        self.passwordtb = Entry(self.loginframe, show="*", textvariable=self.passVar)
-        self.passwordtb.place(x=100, y=285)
+        self.passwordTb = Entry(self.loginframe, show="*", textvariable=self.passVar)
+        self.passwordTb.place(x=100, y=285)
 
         self.ubImg = PhotoImage(file="./img/field.png")
         self.userVar = StringVar()
-        self.usernametb = Entry(self.loginframe, textvariable=self.userVar)
-        self.usernametb.place(x=100,y=238)
+        self.usernameTb = Entry(self.loginframe, textvariable=self.userVar)
+        self.usernameTb.place(x=100, y=238)
 
         self.btnImg = PhotoImage(file="./img/button.png")
-        self.loginbtn = Button(self.loginframe, command=self.checkContent, height=33, width=149, image=self.btnImg)        #Login Button
-        self.loginbtn.place(x=99, y=330)
+        self.loginBtn = Button(self.loginframe, command=self.checkContent, height=33, width=149,
+                               image=self.btnImg)  # Login Button
+        self.loginBtn.place(x=99, y=330)
 
         #self.visitLbl = Label(self.loginframe, text="PrestaShop-Bot", fg="blue", bg= null)
         #self.visitLbl.place(x=140, y=430)
         #self.visitLbl.bind("<Button-1>", callback)
-        self.loginframe.mainloop()
+
+        statusvar = StringVar()
+        statusvar.set("MySQL Online")
+        self.statusLbl = Label(self.loginframe, text="Online", bg="white", fg="green")
+        self.statusLbl.place(x=160, y=200)
+        # MySQL QUERY = "SELECT VERSION()"
+
+        self.loginframe.mainloop()  # MAINLOOP END
 
     def checkContent(self):
         hashObj = hashlib.sha256(self.passVar.get().encode())
         userQuery = db.query("SELECT * FROM ita_user WHERE username = '%s' AND password = '%s'" % (self.userVar.get(), hashObj.hexdigest()))
         if len(userQuery.fetchall()):
-            time.sleep(1)
-            quit(self)      #the mainframe is still running...
+            Mainframe()
         else:
-            messagebox.showinfo("Error", "Invalid username or password!", icon="error")
+            messagebox.showinfo("Error", "Invalid Input: Wrong username or password, please try again!", icon="error")
 
-    #def callback(event):
-        #webbrowser.open_new(r"http://www.google.com")
 
 Application()
+
+# def callback(event):
+# webbrowser.open_new(r"github")
