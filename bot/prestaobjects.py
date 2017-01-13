@@ -110,5 +110,6 @@ class Shop():
                     quantity = item.find("product_quantity")
                     pro = Product(reference.text, name.text, int(quantity.text))
                     list_items.append(pro)
-                self.list_orders.append(Order(self, int(id.text), int(id_customer.text), list_items, order_reference.text))
+                self.list_orders.append(
+                    Order(self, int(id.text), int(id_customer.text), list_items, order_reference.text))
         return self.list_orders

@@ -7,7 +7,6 @@ from tkinter.scrolledtext import ScrolledText
 # from login import *
 import sys
 
-
 db = DB()
 
 

@@ -6,6 +6,7 @@ import hashlib
 import webbrowser
 from main import *
 
+
 class Application():
     def __init__(self):
         self.db = DB()
@@ -48,7 +49,8 @@ class Application():
 
     def checkContent(self):
         hashObj = hashlib.sha256(self.passVar.get().encode())
-        userQuery = self.db.query("SELECT * FROM ita_user WHERE username = '%s' AND password = '%s'" % (self.userVar.get(), hashObj.hexdigest()))
+        userQuery = self.db.query("SELECT * FROM ita_user WHERE username = '%s' AND password = '%s'" % (
+        self.userVar.get(), hashObj.hexdigest()))
         if len(userQuery.fetchall()):
             Mainframe()
         else:
@@ -56,5 +58,6 @@ class Application():
 
     def visitUs(self, event):
         webbrowser.open_new_tab("https://github.com/Gurkengewuerz/prestashop-bot")
+
 
 Application()

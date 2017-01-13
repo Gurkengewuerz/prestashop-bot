@@ -97,7 +97,7 @@ def add_shop(key="", url=""):
     if key != "":
         if url != "":
             output["info"] = ("Delete Shop %s@%s" % (url, key))
-            sql = "DELETE FROM ita_shop WHERE url = '%s' AND api_key = '%s'"%(url, key)
+            sql = "DELETE FROM ita_shop WHERE url = '%s' AND api_key = '%s'" % (url, key)
             db.query(sql)
         else:
             output["error"] = "No SHOP Url to API"
@@ -115,7 +115,7 @@ def add_licence(key="", reference=""):
             output["info"] = ("Import Key %s" % key)
             db.query(
                 "INSERT INTO ita_licencekey (licence, product_reference, created_timestamp, rented_timestamp) VALUES ('%s','%s','%s', NULL)" % (
-                key, reference, int(time.time())))
+                    key, reference, int(time.time())))
         else:
             output["error"] = "No Product Reference"
     else:
