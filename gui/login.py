@@ -6,12 +6,11 @@ import hashlib
 import webbrowser
 from main import *
 
-
-db = DB()
-
-
 class Application():
     def __init__(self):
+        self.db = DB()
+        self.db.connect()
+
         self.loginframe = Tk()
         self.loginframe.iconbitmap(default="./img./ico.ico")
         self.loginframe.title("Administration Control Panel")
@@ -35,9 +34,9 @@ class Application():
                                image=self.btnImg)  # Login Button
         self.loginBtn.place(x=99, y=330)
 
-        #self.visitLbl = Label(self.loginframe, text="PrestaShop-Bot", fg="blue", bg= null)
-        #self.visitLbl.place(x=140, y=430)
-        #self.visitLbl.bind("<Button-1>", callback)
+        self.visitLbl = Label(self.loginframe, text="PrestaShop-Bot", fg="blue")
+        self.visitLbl.place(x=140, y=430)
+        self.visitLbl.bind("<Button-1>", self.visitUs)
 
         statusvar = StringVar()
         statusvar.set("MySQL Online")
@@ -49,14 +48,13 @@ class Application():
 
     def checkContent(self):
         hashObj = hashlib.sha256(self.passVar.get().encode())
-        userQuery = db.query("SELECT * FROM ita_user WHERE username = '%s' AND password = '%s'" % (self.userVar.get(), hashObj.hexdigest()))
+        userQuery = self.db.query("SELECT * FROM ita_user WHERE username = '%s' AND password = '%s'" % (self.userVar.get(), hashObj.hexdigest()))
         if len(userQuery.fetchall()):
             Mainframe()
         else:
             messagebox.showinfo("Error", "Invalid Input: Wrong username or password, please try again!", icon="error")
 
+    def visitUs(self, event):
+        webbrowser.open_new_tab("https://github.com/Gurkengewuerz/prestashop-bot")
 
 Application()
-
-# def callback(event):
-# webbrowser.open_new(r"github")
