@@ -25,11 +25,14 @@
                 <h4 class="modal-title" id="myModalLabel">Lizenz hinzufügen</h4>
             </div>
             <div class="modal-body">
-                ...
+                <label for="referenceText">Artikel Nummer</label>
+                <input type="text" class="form-control" id="referenceText">
+                <label for="newLicenceText">Lizenz</label>
+                <input type="text" class="form-control" id="newLicenceText">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary" id="newLicenceBtn">Hinzufügen</button>
             </div>
         </div>
     </div>
@@ -87,6 +90,7 @@
             <th>Gültig für</th>
             <th>Erstell Datum</th>
             <th>Auslieferungs Datum</th>
+            <th>Bearbeiten</th>
         </tr>
         </thead>
         <tbody>
@@ -96,6 +100,10 @@
             <td>K2017IS</td>
             <td>06.12.2015</td>
             <td>- - - - -</td>
+            <td>
+                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+            </td>
         </tr>
         </tbody>
     </table>

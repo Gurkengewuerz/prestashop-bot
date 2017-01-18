@@ -70,6 +70,10 @@ $(document).ready(function () {
                         "<td>" + item.product_reference + "</td>" +
                         "<td>" + formatDate(new Date(item.created_timestamp * 1000)) + "</td>" +
                         "<td>" + (item.rendet_timestamp == null ? "nicht vergeben" : formatDate(new Date(item.rendet_timestamp * 1000))) + "</td>" +
+                        "<td>" +
+                        "<a href='#' class='toggle-lic' for-id='" + item.licence + "'><span class='glyphicon glyphicon-eye-close' aria-hidden='true'></span></a>" +
+                        "<a href='#' class='remove' for-id='" + item.licence + "'><span class='glyphicon glyphicon-trash' for-id='" + item.licence + "' aria-hidden='true'></span></a>" +
+                        "</td>" +
                         "</tr>"
                     );
                 });
@@ -111,4 +115,36 @@ $(document).ready(function () {
         $('#addLicenceModal').modal("toggle");
     });
 
+    $("#newLicenceBtn").click(function (e) {
+        e.preventDefault();
+        var lic = $("#newLicenceText").val();
+        var reference = $("#referenceText").val();
+        if (!lic.trim()) return;
+        $.ajax({
+            url: "/api/add/licence/" + encodeURIComponent(lic) + "/" + encodeURIComponent(reference),
+            async: true,
+            dataType: "json",
+            success: function (data) {
+                console.log(data);
+                var json = data;
+                if (json.error !== "No") {
+                    alert(json.error);
+                    return;
+                }
+                console.log(json.info);
+                refresh();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log(textStatus, errorThrown);
+            }
+        });
+    });
+
+    // Funktioniert nicht?!
+    // Wird nicht aufgerufen
+    $(".remove").click(function (e) {
+        console.log("Clicked a remove button");
+        var lic = $(this).attr("for-id");
+        alert(lic);
+    });
 });
