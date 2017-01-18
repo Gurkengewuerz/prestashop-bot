@@ -102,3 +102,4 @@ gui/__pycache__/
 bot/.idea/
 webinterface/.idea/
 gui/.idea/
+test/
