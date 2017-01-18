@@ -10,7 +10,11 @@ from main import *
 class Application():
     def __init__(self):
         self.db = DB()
-        self.db.connect()
+        self.offline = False
+        try:
+            self.db.connect()
+        except pymysql.err.OperationalError:
+            self.offline = True
 
         self.loginframe = Tk()
         self.loginframe.iconbitmap(default="./img./ico.ico")
@@ -39,20 +43,27 @@ class Application():
         self.visitLbl.place(x=140, y=430)
         self.visitLbl.bind("<Button-1>", self.visitUs)
 
-        statusvar = StringVar()
-        statusvar.set("MySQL Online")
-        self.statusLbl = Label(self.loginframe, text="Online", bg="white", fg="green")
-        self.statusLbl.place(x=160, y=200)
-        # MySQL QUERY = "SELECT VERSION()"
+        if self.offline is False:
+            self.statusOn = Label(self.loginframe, text="Online", bg="white", fg="green")
+            self.statusOn.place(x=160, y=200)
+        else:
+            self.statusOff = Label(self.loginframe, text="Offline", bg="white", fg="red")
+            self.statusOff.place(x=160, y=200)
+
+        self.loginframe.bind("<Return>", self.returnFunc)
 
         self.loginframe.mainloop()  # MAINLOOP END
+
+    def returnFunc(self, event):
+        self.checkContent()
 
     def checkContent(self):
         hashObj = hashlib.sha256(self.passVar.get().encode())
         userQuery = self.db.query("SELECT * FROM ita_user WHERE username = '%s' AND password = '%s'" % (
         self.userVar.get(), hashObj.hexdigest()))
         if len(userQuery.fetchall()):
-            Mainframe()
+            self.loginframe.withdraw()
+            Mainframe(self.userVar.get())
         else:
             messagebox.showinfo("Error", "Invalid Input: Wrong username or password, please try again!", icon="error")
 

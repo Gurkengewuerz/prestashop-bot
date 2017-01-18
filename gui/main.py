@@ -11,7 +11,7 @@ db = DB()
 
 
 class Mainframe:
-    def __init__(self):
+    def __init__(self, userVar):
         self.main = Toplevel()
         self.main.iconbitmap(default="./img./ico.ico")
         self.main.title("Administration Control Panel")
@@ -21,8 +21,7 @@ class Mainframe:
         self.defUser = PhotoImage(file="./img/default_user.png")
         self.defUserLb = Label(self.main, image=self.defUser).place(x=735, y=12)
 
-        self.userVar = "Martin"
-        self.loggedIn = Label(self.main, text="Welcome, %s" % self.userVar)
+        self.loggedIn = Label(self.main, text="Welcome, %s" % userVar)
         self.loggedIn.place(x=635, y=20)
 
         self.commLb = Label(self.main, text="Command")
@@ -41,7 +40,7 @@ class Mainframe:
         tab.add(page1, text="Customers")
         tab.add(page2, text="Orders")
         tab.add(page3, text="Products")
-        tab.add(page4, text="Messages")
+        tab.add(page4, text="Licences")
         tab.place(x=3, y=35)
 
         custOutput = Text(page1, width=90, height=20)
@@ -49,13 +48,26 @@ class Mainframe:
         # ScrollBarY.config(command=output.yview)
         # ScrollBarY.pack(side=RIGHT, fill=Y)
         # output.configure(yscrollcommand=ScrollBarY.set)
-
         custOutput.pack()
+
+        licOutput = Text(page4, width=90, height=20)
+        # ScrollBarY = Scrollbar(output)
+        # ScrollBarY.config(command=output.yview)
+        # ScrollBarY.pack(side=RIGHT, fill=Y)
+        # output.configure(yscrollcommand=ScrollBarY.set)
+        licOutput.pack()
 
         # Customer Query
         custQuery = db.query("SELECT * FROM ps_customer")
-        custQueryFetch = custQuery.fetchone()
-        custOutput.insert(INSERT, custQueryFetch)
+        custQueryFetch = custQuery.fetchall()
+        for row in custQueryFetch:
+            custOutput.insert(INSERT, "%s\t%s\t\t%s\t\t\t%s\n" % (row[0], row[10], row[11], row[12]))
+
+        licQuery = db.query("SELECT * FROM ita_licencekey")
+        licQueryFetch = licQuery.fetchall()
+        for row in licQueryFetch:
+            licOutput.insert(INSERT, "%s\t%s\t\t%s\t\t%s\t\t%s\t\t\n" % (row[0], row[1], row[2], row[3], row[4]))
+
 
         self.statusbar = Label(self.main, text="Waiting for actions...", bd=1, relief=SUNKEN, anchor=W)
         self.statusbar.pack(side=BOTTOM, fill=X)

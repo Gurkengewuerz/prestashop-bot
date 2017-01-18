@@ -7,11 +7,8 @@ class DB:
     conn = None
 
     def connect(self):
-        try:
-            self.conn = pymysql.connect(**connection_properties)
-            return self.conn
-        except pymysql.err.OperationalError:
-            sys.exit("Invalid Input: Wrong username/database or password found, please try again")
+        self.conn = pymysql.connect(**connection_properties)
+        return self.conn
 
     def query(self, sql):
         try:
