@@ -59,6 +59,7 @@ webbinterface/dbsettings.sample.py -> webinterface/dbsettings.py
         `user_id` INT(11) NOT NULL DEFAULT '0',
         `username` VARCHAR(60) NULL DEFAULT NULL,
         `password` VARCHAR(255) NULL DEFAULT NULL,
+        `rank` ENUM('SUPPORT', 'WRENCHMAN', 'ADMINISTRATOR')
         PRIMARY KEY (`user_id`)
     ) COLLATE='latin1_swedish_ci'ENGINE=InnoDB;
 
