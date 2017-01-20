@@ -4,11 +4,13 @@ from db import *
 from telegram import *
 from twitterbot import *
 import time
-
+"""
+    the Bot who looks for new payed orders and send if it needed the license keys if there enough in the database
+"""
 db = DB()
 
 if __name__ == "__main__":
-    db.connect()
+    db.connect() # connect to the database
     shopQuery = db.query("SELECT * FROM ita_shop;")
     for shop in shopQuery.fetchall():
         statQuery = db.query("SELECT * FROM ita_shop_stat WHERE shop_id=%s" % shop[0])
@@ -41,6 +43,7 @@ if __name__ == "__main__":
             if changedItems >= 1:
                 order.setStatus(shopObj.delivstat)
                 print("%s Set Order Status to deliverd" % order.reference)
+                # Send the confirmation message that the license keys for the a order a send offer Twitter and Telegram
                 if telegram_api is not None and telegram_api != "":
                     bot = TelegramBot(telegram_api)
                     bot.sendMSG(telegram_chat, "%s Delivered" % order.reference)
