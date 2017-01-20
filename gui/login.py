@@ -40,7 +40,7 @@ class Application():
         self.loginBtn.place(x=99, y=330)
 
         self.visitLbl = Label(self.loginframe, text="PrestaShop-Bot", fg="blue")
-        self.visitLbl.place(x=140, y=430)
+        self.visitLbl.place(x=148, y=425)
         self.visitLbl.bind("<Button-1>", self.visitUs)
 
         if self.offline is False:
