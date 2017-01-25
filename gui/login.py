@@ -42,10 +42,11 @@ class Application():
                                image=self.btnImg)  # Login Button
         self.loginBtn.place(x=99, y=330)
 
-        self.visitLbl = Label(self.loginframe, text="PrestaShop-Bot", fg="blue")
-        self.visitLbl.place(x=148, y=425)
-        self.visitLbl.bind("<Button-1>", self.visitUs)
+        self.visitImg = PhotoImage(file="./img/visbg.png")
+        self.visitLbl = Label(self.loginframe, image=self.visitImg)
+        self.visitLbl.place(x=-2, y=405)
 
+        self.visitLbl.bind("<Button-1>", self.visitUs)
         if self.offline is False:
             self.statusOn = Label(self.loginframe, text="Online", bg="white", fg="green")
             self.statusOn.place(x=160, y=200)
