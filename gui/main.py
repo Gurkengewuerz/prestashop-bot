@@ -11,6 +11,9 @@ db = DB()
 
 class Mainframe:
     def __init__(self, userVar):
+        """
+            build up the gui and get the data from the database
+        """
         self.main = Toplevel()
         self.main.iconbitmap(default="./img./ico.ico")
         self.main.title("Administration Control Panel")

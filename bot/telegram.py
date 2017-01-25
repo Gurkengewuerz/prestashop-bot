@@ -32,7 +32,7 @@ class TelegramBot():
         ).json()
         return response
 
-
+# Module Test
 if __name__ == "__main__":
     bot = TelegramBot("")
     while True:

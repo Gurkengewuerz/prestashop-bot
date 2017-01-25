@@ -15,11 +15,17 @@ response.default_content_type = "application/json"
 
 @route('/')
 def index_hook():
+    """
+        load static files for index
+    """
     return static_file("index.html", root=PATH + "./static/")
 
 
 @route('/static/<filename>')
 def server_static(filename):
+    """
+        load static files
+    """
     return static_file(filename, root=PATH + "./static/")
 
 
@@ -37,6 +43,9 @@ def server_static(filename):
 @route("/api/get/licence")
 @route("/api/get/licence/<product>")
 def get_licence_hook(product=None):
+    """
+        get a licene hook
+    """
     where = ""
     if product is not None:
         where = " WHERE product_reference = '%s'" % product
@@ -55,6 +64,9 @@ def get_licence_hook(product=None):
 
 @route("/api/get/shop")
 def get_shop_hook():
+    """
+        get a shop hook
+    """
     data = db.query("SELECT * FROM ita_shop")
     output = []
     for row in data.fetchall():
@@ -76,11 +88,17 @@ def get_shop_hook():
 @route("/api/add/shop/")
 @route("/api/delete/shop/")
 def add_delete_hook():
+    """
+        catch all
+    """
     return {"error": "API Request not Valid!"}
 
 
 @route("/api/delete/licence/<key>", method="GET")
 def delete_licence(key=""):
+    """
+        delete a licence
+    """
     output = {"error": "No"}
     if key != "":
         output["info"] = ("Delete Key %s" % key)
@@ -93,6 +111,9 @@ def delete_licence(key=""):
 @route("/api/delete/shop/<key>", method="GET")
 @route("/api/delete/shop/<key>/<url:re:.+>", method="GET")
 def add_shop(key="", url=""):
+    """
+        add a shop
+    """
     output = {"error": "No"}
     if key != "":
         if url != "":
@@ -109,6 +130,9 @@ def add_shop(key="", url=""):
 @route("/api/add/licence/<key>", method="GET")
 @route("/api/add/licence/<key>/<reference>", method="GET")
 def add_licence(key="", reference=""):
+    """
+        add a licence
+    """
     output = {"error": "No"}
     if key != "":
         if reference != "":
@@ -129,6 +153,10 @@ def add_licence(key="", reference=""):
 @route("/api/add/shop/<key>/<url:re:.+>/<name>/<paystat>", method="GET")
 @route("/api/add/shop/<key>/<url:re:.+>/<name>/<paystat>/<delivstat>", method="GET")
 def add_shop(key="", url="", name="", paystat="", delivstat=""):
+    """
+        Check if all attributes are existing
+        :return: return if it is an error or not
+    """
     output = {"error": "No"}
     if key != "":
         if url != "":

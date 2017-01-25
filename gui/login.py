@@ -9,6 +9,9 @@ from main import *
 
 class Application():
     def __init__(self):
+        """
+            build up the login gui and check if it possible to connect with the database
+        """
         self.db = DB()
         self.offline = False
         try:
@@ -55,9 +58,15 @@ class Application():
         self.loginframe.mainloop()  # MAINLOOP END
 
     def returnFunc(self, event):
+        """
+            return key hook
+        """
         self.checkContent()
 
     def checkContent(self):
+        """
+            open the main gui if login accepted or give an Error message
+        """
         hashObj = hashlib.sha256(self.passVar.get().encode())
         userQuery = self.db.query("SELECT * FROM ita_user WHERE username = '%s' AND password = '%s'" % (
         self.userVar.get(), hashObj.hexdigest()))
@@ -68,6 +77,9 @@ class Application():
             messagebox.showinfo("Error", "Invalid Input: Wrong username or password, please try again!", icon="error")
 
     def visitUs(self, event):
+        """
+            open our website
+        """
         webbrowser.open_new_tab("https://github.com/Gurkengewuerz/prestashop-bot")
 
 

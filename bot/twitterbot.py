@@ -16,11 +16,10 @@ class TwitterAPI:
         """
             tweet a message on Twitter
             :param message: the message which will tweet
-            :return:
         """
         self.api.update_status(status=message)
 
-
+# Module test
 if __name__ == "__main__":
     twitter = TwitterAPI()
     while True:
